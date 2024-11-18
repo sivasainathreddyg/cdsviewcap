@@ -1,0 +1,54 @@
+<mvc:View
+    controllerName="calculationview.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <Table id="caltable" items="{
+                    path: '/SALESORDERs' 
+                }">
+            <columns>
+                <Column>
+                    <Text text="CustomerName" />
+                </Column>
+                <Column>
+                    <Text text="Order Date" />
+                </Column>
+                <Column>
+                    <Text text="ProductID" />
+                </Column>
+                
+                <Column>
+                    <Text text="Quantity" />
+                </Column>
+                
+                <Column>
+                    <Text text="Total Amount" />
+                </Column>
+                <Column>
+                    <Text text="ProductName" />
+                </Column>
+                <Column>
+                    <Text text="Category" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{CustomerName}" />
+                        <Text text="{OrderDate}" />
+                        <Text text="{ProductID}" />
+                        <Text text="{Quantity}" />
+                        <Text text="{TotalAmount}" />
+                        <Text text="{ProductName}" />
+                        <Text text="{Category}" />
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

@@ -1,0 +1,24 @@
+PROCEDURE "DISCOUNT"()
+   LANGUAGE SQLSCRIPT
+   SQL SECURITY DEFINER
+ AS
+BEGIN
+   DECLARE discount_rate DECIMAL(5, 2) := 10;
+   INSERT INTO DiscountedOrders (OrderID, OrderDate, CustomerName, ProductName, Quantity, Price, TotalAmount, DiscountAmount)
+
+
+   SELECT DISTINCT 
+   o.ID, 
+   o.OrderDate, 
+   o.CustomerName, 
+   oi.ProductName, 
+   oi.Quantity, 
+   oi.Price,  
+   oi.Quantity * oi.Price AS TotalAmount, 
+   oi.Quantity * oi.Price * (1 - discount_rate / 100) AS DiscountAmount
+FROM 
+   Orderstable_orderitems oi
+JOIN 
+   Orderstable_orders o ON o.ID = oi.ID;
+
+END;

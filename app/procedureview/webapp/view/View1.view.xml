@@ -1,0 +1,58 @@
+
+
+<mvc:View
+    controllerName="procedureview.controller.View1"
+    xmlns:mvc="sap.ui.core.mvc"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="page"
+        title="{i18n>title}"
+    >
+        <Table id="viewtable" items="{
+                    path: '/DiscountedOrder' 
+                }">
+            <columns>
+                <Column>
+                    <Text text="Order ID" />
+                </Column>
+                <Column>
+                    <Text text="Order Date" />
+                </Column>
+                <Column>
+                    <Text text="Customer Name" />
+                </Column>
+                <Column>
+                    <Text text="Product Name" />
+                </Column>
+                <Column>
+                    <Text text="Quantity" />
+                </Column>
+                <Column>
+                    <Text text="Price" />
+                </Column>
+                <Column>
+                    <Text text="Total Amount" />
+                </Column>
+                <Column>
+                    <Text text="Discount Amount" />
+                </Column>
+            </columns>
+            <items>
+                <ColumnListItem>
+                    <cells>
+                        <Text text="{OrderID}" />
+                        <Text text="{OrderDate}" />
+                        <Text text="{CustomerName}" />
+                        <Text text="{ProductName}" />
+                        <Text text="{Quantity}" />
+                        <Text text="{Price}" />
+                        <Text text="{TotalAmount}" />
+                        <Text text="{DiscountAmount}"></Text>
+                    </cells>
+                </ColumnListItem>
+            </items>
+        </Table>
+    </Page>
+</mvc:View>

@@ -65,6 +65,14 @@ modules:
       - cdsviews.zip
       name: cdsviews
       target-path: resources/
+    - artifacts:
+      - procedureview.zip
+      name: procedureview
+      target-path: resources/
+    - artifacts:
+      - calculationview.zip
+      name: calculationview
+      target-path: resources/
 - name: project1
   type: html5
   path: app/project1
@@ -78,6 +86,26 @@ modules:
 - name: cdsviews
   type: html5
   path: app/cdsviews
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: procedureview
+  type: html5
+  path: app/procedureview
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: calculationview
+  type: html5
+  path: app/calculationview
   build-parameters:
     build-result: dist
     builder: custom
