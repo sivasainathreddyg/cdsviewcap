@@ -1,24 +1,66 @@
+-- What is a Procedure in SAP HANA?
+-- A procedure in SAP HANA is a reusable set of SQLScript (or SQL) statements that can perform specific tasks, 
+--    such as data manipulation, calculations, or returning results.
+-- It is commonly used for batch processing, complex calculations, and data transformations.
+-- Unlike a view, a procedure can include logic (e.g., variables, loops, and conditions) and perform actions like 
+--    inserting, updating, or deleting data.
+
+
+-- Define a stored procedure named "DISCOUNT"
 PROCEDURE "DISCOUNT"()
-   LANGUAGE SQLSCRIPT
-   SQL SECURITY DEFINER
- AS
+   LANGUAGE SQLSCRIPT                  -- Specify the SQLScript as the programming language
+   SQL SECURITY DEFINER                -- The procedure runs with the permissions of the user who created it
+AS
 BEGIN
+   -- Declare a variable to store the discount rate (e.g., 10%)
    DECLARE discount_rate DECIMAL(5, 2) := 10;
-   INSERT INTO DiscountedOrders (OrderID, OrderDate, CustomerName, ProductName, Quantity, Price, TotalAmount, DiscountAmount)
 
+   -- Insert the discounted data into the DiscountedOrders table
+   INSERT INTO DiscountedOrders 
+      (OrderID, OrderDate, CustomerName, ProductName, Quantity, Price, TotalAmount, DiscountAmount)
 
+   -- Query to calculate the discounted order details
    SELECT DISTINCT 
-   o.ID, 
-   o.OrderDate, 
-   o.CustomerName, 
-   oi.ProductName, 
-   oi.Quantity, 
-   oi.Price,  
-   oi.Quantity * oi.Price AS TotalAmount, 
-   oi.Quantity * oi.Price * (1 - discount_rate / 100) AS DiscountAmount
-FROM 
-   Orderstable_orderitems oi
-JOIN 
-   Orderstable_orders o ON o.ID = oi.ID;
+      o.ID,                              -- The unique identifier for the order
+      o.OrderDate,                       -- The date of the order
+      o.CustomerName,                    -- The name of the customer who placed the order
+      oi.ProductName,                    -- The name of the product in the order
+      oi.Quantity,                       -- The quantity of the product ordered
+      oi.Price,                          -- The price per unit of the product
+      oi.Quantity * oi.Price AS TotalAmount,       -- Calculate the total amount for the product line
+      oi.Quantity * oi.Price * (1 - discount_rate / 100) AS DiscountAmount -- Calculate the discounted amount
+   FROM 
+      Orderstable_orderitems oi          -- Table containing line-item details
+   JOIN 
+      Orderstable_orders o               -- Table containing order-level details
+   ON 
+      o.ID = oi.ID;                      -- Join the tables on the Order ID field
 
 END;
+
+
+
+-- PROCEDURE "DISCOUNT"()
+--    LANGUAGE SQLSCRIPT
+--    SQL SECURITY DEFINER
+--  AS
+-- BEGIN
+--    DECLARE discount_rate DECIMAL(5, 2) := 10;
+--    INSERT INTO DiscountedOrders (OrderID, OrderDate, CustomerName, ProductName, Quantity, Price, TotalAmount, DiscountAmount)
+
+
+--    SELECT DISTINCT 
+--    o.ID, 
+--    o.OrderDate, 
+--    o.CustomerName, 
+--    oi.ProductName, 
+--    oi.Quantity, 
+--    oi.Price,  
+--    oi.Quantity * oi.Price AS TotalAmount, 
+--    oi.Quantity * oi.Price * (1 - discount_rate / 100) AS DiscountAmount
+-- FROM 
+--    Orderstable_orderitems oi
+-- JOIN 
+--    Orderstable_orders o ON o.ID = oi.ID;
+
+-- END;

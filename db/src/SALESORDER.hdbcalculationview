@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SALESORDER" applyPrivilegeType="NONE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" id="SALESORDER" applyPrivilegeType="SQL_ANALYTIC_PRIVILEGE" dataCategory="DIMENSION" dimensionType="STANDARD" schemaVersion="3.0" hierarchyGeneration="SQL" outputViewType="Projection" cacheInvalidationPeriod="NONE" enforceSqlExecution="true" application="BAS">
 <descriptions defaultDescription="SALESORDER"/>
 <localVariables/>
 <variableMappings/>
@@ -90,11 +90,11 @@
       <rectangleSize height="30" width="270"/>
     </shape>
     <shape modelObjectName="ORDERSTABLE_SALESORDERS" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="13" y="26"/>
+      <upperLeftCorner x="541" y="31"/>
       <rectangleSize width="252"/>
     </shape>
     <shape modelObjectName="ORDERSTABLE_PRODUCTINFO" modelObjectNameSpace="Join_1" modelObjectType="JoinNodeInput">
-      <upperLeftCorner x="320" y="30"/>
+      <upperLeftCorner x="242" y="59"/>
       <rectangleSize width="249"/>
     </shape>
   </shapes>

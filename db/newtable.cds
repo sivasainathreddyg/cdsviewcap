@@ -31,6 +31,12 @@ context orderstable {
             ProductName : String;
             Category    : String
     }
+
+    entity SALES_VIEW{
+        REGION :String;
+        SALES_AMOUNT:Int16;
+        CUSTOMER:String;
+    }
 }
 
 @cds.persistence.exists

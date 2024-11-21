@@ -1,15 +1,46 @@
+-- What is an HDB View?
+-- An HDB view is a database view in SAP HANA. It represents a virtual table that combines data from one or more tables or 
+    -- entities without physically storing the data.
+-- It is used to simplify data access, enhance readability, or implement business logic within a query.
+
+
+
+-- Define a new database view named "ORDER"
 VIEW "ORDER"
-AS SELECT 
-Orderstable_orders.ID AS OrderID,
-Orderstable_orders.OrderDate,
-Orderstable_orders.CustomerName,
-Orderstable_orderitems.PRODUCTNAME,
-Orderstable_orderitems.Quantity,
-Orderstable_orderitems.Price,
-Orderstable_orderitems.Quantity * Orderstable_orderitems.Price AS TotalAmount
+AS 
+-- Start of the SELECT statement that defines the columns of the view
+SELECT 
+    Orderstable_orders.ID AS OrderID,          -- The unique identifier for an order
+    Orderstable_orders.OrderDate,             -- The date the order was placed
+    Orderstable_orders.CustomerName,          -- The name of the customer who placed the order
+    Orderstable_orderitems.PRODUCTNAME,       -- The name of the product in the order
+    Orderstable_orderitems.Quantity,          -- The quantity of the product ordered
+    Orderstable_orderitems.Price,             -- The price per unit of the product
+    -- Calculate the total amount for each product in the order (Quantity * Price)
+    Orderstable_orderitems.Quantity * Orderstable_orderitems.Price AS TotalAmount
 FROM
-Orderstable_orderitems 
+    -- Table containing details of each product in the order
+    Orderstable_orderitems 
 JOIN
-Orderstable_orders 
+    -- Table containing high-level order details
+    Orderstable_orders 
 ON
-Orderstable_orders.ID = Orderstable_orderitems.ID;
+    -- Joining the tables on the Order ID field
+    Orderstable_orders.ID = Orderstable_orderitems.ID;
+
+
+-- VIEW "ORDER"
+-- AS SELECT 
+-- Orderstable_orders.ID AS OrderID,
+-- Orderstable_orders.OrderDate,
+-- Orderstable_orders.CustomerName,
+-- Orderstable_orderitems.PRODUCTNAME,
+-- Orderstable_orderitems.Quantity,
+-- Orderstable_orderitems.Price,
+-- Orderstable_orderitems.Quantity * Orderstable_orderitems.Price AS TotalAmount
+-- FROM
+-- Orderstable_orderitems 
+-- JOIN
+-- Orderstable_orders 
+-- ON
+-- Orderstable_orders.ID = Orderstable_orderitems.ID;
